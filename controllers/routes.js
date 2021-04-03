@@ -4,6 +4,7 @@ module.exports = app => {
   app.get('/agendamentos', (req, resp) => {
     Agendamento.listagem(resp);
   });
+  
   app.post('/agendamentos', (req, resp) => {
     const agendamento = req.body;
     Agendamento.inserir(agendamento, resp);
@@ -17,5 +18,11 @@ module.exports = app => {
   app.delete('/agendamentos',(req, resp) => {
     const id = parseInt(req.params.id)
     Agendamento.remover(id, resp)
+  })
+
+  app.put('/agendamentos', (req, resp) => {
+    const id = parseInt(req.params.id)
+    const valores = req.params.valores
+    Agendamento.alterar(id, valores, resp)
   })
 };
